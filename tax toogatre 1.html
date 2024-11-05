@@ -1,0 +1,149 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <style>
+    body{
+      background-image: url(MUNU.jpg);
+    }
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> LOYING JITU TAX CALCULATION </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url(MUNU1.jpg);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-image: url(MUNU3.jpg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        label, select, input {
+            display: block;
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> JITU 7896220943 DEMO PROJECT TAX CALCULATION </h1>
+        
+        <video id="video" autoplay></video>
+        <button id="startCamera">Start Camera Jitu Loying</button>
+
+        <label for="vehicleType">Select Vehicle Type:</label>
+        <select id="vehicleType">
+            <option value="bycycle">cycle-$3</option>
+            <option value="car">Car - $5</option>
+            <option value="truck">Truck - $10</option>
+            <option value="bus">Bus - $15</option>
+        </select>
+
+        <label for="distance">Enter Distance (in km):</label>
+        <input type="number" id="distance" placeholder="Enter the distance traveled" />
+
+        <button id="calculateToll">Calculate Toll</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Access camera
+        const video = document.getElementById('video');
+        const startCameraBtn = document.getElementById('startCamera');
+
+        // Function to start camera
+        startCameraBtn.addEventListener('click', function() {
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (error) {
+                    alert("Camera access denied or not available by jitu loying .");
+                });
+            }
+        });
+
+        // Toll calculation
+        document.getElementById('calculateToll').addEventListener('click', function() {
+            const vehicleType = document.getElementById('vehicleType').value;
+            const distance = parseFloat(document.getElementById('distance').value);
+
+            if (!distance || distance <= 0) {
+                document.getElementById('result').textContent = "Please enter a valid distance.";
+                return;
+            }
+
+            let tollRate = 0;
+
+            // Define toll rates based on vehicle type
+            switch (vehicleType) {
+
+                case 'bycycle':
+                    tollRate =3;
+                    break;
+                case 'car':
+                    tollRate = 5;
+                    break;
+                case 'truck':
+                    tollRate = 10;
+                    break;
+                case 'bus':
+                    tollRate = 15;
+                    break;
+                default:
+                    tollRate = 0;
+            }
+
+            // Calculate total toll based on distance
+            const totalToll = tollRate * distance;
+
+            // Display result
+            document.getElementById('result').textContent = `Total Toll: $${totalToll.toFixed(2)} for a ${vehicleType} traveling ${distance} km.`;
+        });
+    </script>
+</body>
+</html>
